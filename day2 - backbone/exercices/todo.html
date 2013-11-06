@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Backbone Todo</title>
+	<link rel="stylesheet" href="../final/style.css"/>
+</head>
+<body>
+
+
+	<div id="app">
+		<h1>Todo list</h1>
+
+		<input type="text" class="new-todo" placeholder="What needs to be done?">
+
+		<div class="todo-content">
+			<ul class="todos"></ul>
+			<div class="todo-stats"></div>
+		</div>
+
+	</div>
+
+	<script type="text/tpl" id="todo-item-tpl">
+		<input class="toggle" type="checkbox" />
+		<%=title%>
+	</script>
+
+
+	<script src="bower_components/jquery/jquery.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/backbone/backbone.js"></script>
+	<script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+	<script src="todo.js"></script>
+</body>
+</html>

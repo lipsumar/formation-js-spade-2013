@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Javascript basics</title>
+
+		<!--
+			While/For
+			Array
+			Object
+			DOM basics
+
+
+		-->
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../../libs/reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../../libs/reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../../libs/reveal/lib/css/zenburn.css">
+
+		<!-- For live-editor -->
+		<link rel="stylesheet" href="../../libs/reveal/plugin/live-editor/style.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../../libs/reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<style>
+			.reveal section h2{color:#FDE404;}
+			.columns{overflow: hidden;width:100%;}
+			.columns .column-50{
+				width:50%;
+				float:left;
+			}
+		</style>
+
+		<script>
+			var allTests = {};
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Javascript basics</h1>
+					<h2>part 2: Loops, arrays &amp; objects</h2>
+				</section>
+
+
+				<section>
+					<h2>While loop</h2>
+
+
+					<p>Exécuter du code tant qu'une expression est vraie <br>(renvoie une valeur truthy)</p>
+					<pre><code class="javascript">
+	while(expression){
+	    // code à répèter
+	}
+					</code></pre>
+
+					<div class="fragment">
+					<pre><code class="javascript">
+	var i = 0;
+	while(i<5){
+	    console.log(i);
+	    i++;
+	}
+
+					</code></pre>
+					</div>
+
+					<p class="fragment">Attention aux boucles infinies!</p>
+
+				</section>
+
+				<section>
+
+					<h2>for loop</h2>
+
+					<p><code>for</code> permet également de répèter du code</p>
+					<pre><code class="javascript">
+	for(initialize; condition; update){
+	    // code à répèter
+	}
+					</code></pre>
+
+					<pre class="fragment"><code class="javascript">
+	for(var i=0; i<5; i++){
+	    console.log(i);
+	}
+					</code></pre>
+
+
+
+					<p class="fragment"><code>for</code> est plus sûr que <code>while</code>,<br>toutes les conditions sont ensembles</p>
+
+				</section>
+
+
+
+				<section>
+					<h2>Array</h2>
+
+					<p>Un <code>array</code> est une liste ordonnée de valeurs de tout type</p>
+					<pre><code class="javascript">
+	var arrayName = [element1, element2, ...];
+					</code></pre>
+
+					<div class="fragment">
+					<pre><code class="javascript">
+	var someNumbers = [1, 2, 3];
+
+	var differentThings = [true, null, "I'm a string!", null];
+					</code></pre>
+					</div>
+
+					<div class="fragment">
+					<p>La propriété <code>length</code> retourne le nombre d'éléments</p>
+					<pre><code class="javascript">
+	console.log(someNumbers.length); // 3
+					</code></pre>
+					</div>
+				</section>
+
+
+				<section>
+					<h2>Lire un array</h2>
+					<p>On accède aux valeurs d'un <code>array</code> via leur index:</p>
+
+					<pre><code class="javascript">
+	var arrayItem = arrayName[index];
+					</code></pre>
+
+					<pre><code class="javascript">
+	var colors = ["green", "blue", "yellow", "white"];
+
+	var firstColor = colors[0];
+	var lastColor = colors[3];
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Ecrire dans un array</h2>
+					<p>On modifie les valeurs d'un tableau de la même manière:</p>
+					<pre><code class="javascript">
+	var colors = ["green", "blue", "yellow", "white"];
+
+	colors[1] = "red";
+					</code></pre>
+
+					<br>
+					<div class="fragment">
+					<p>2 manières d'ajouter des valeurs:</p>
+					<pre><code class="javascript">
+	colors[4] = "black";
+
+	colors.push("black");
+					</code></pre>
+					</div>
+				</section>
+
+
+				<section>
+					<h2>loops &amp; arrays</h2>
+					<p>Une boucle permet de lire chaque valeur d'un <code>array</code></p>
+					<pre><code class="javascript">
+	var colors = ["green", "blue", "yellow", "white"];
+
+	for(var i=0; i&lt;colors.length; i++){
+	    console.log(colors[i]);
+	}
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Let's develop it!</h2>
+
+					<p>Faites un <code>array</code> de vos fruits préférés.</p>
+					<p>Le but est d'afficher une <code>string</code> comme:<br>"Mes fruits préférés sont XX, YY, ZZ."</p>
+					<p>Bonus: utilisez une fonction.</p>
+					<p>Bonus++: ajoutez "et" avant le dernier élément plutot qu'une virgule.</p>
+				</section>
+
+
+				<section>
+					<pre class="live-editor">
+function getEnumerationString(arr){
+	var str = '';
+	for(var i=0; i&lt;arr.length; i++){
+		str += arr[i];
+		if(i===arr.length-2){
+			str+=' et ';
+		}else if(i!==arr.length-1){
+			str+=', ';
+		}
+	}
+	return str;
+}
+
+var myFavoriteFruits = ['les bananes','la bière','le limoncello'];
+
+console.log('Mes fruits préférés sont '+
+getEnumerationString(myFavoriteFruits)+'.');
+
+</pre>
+				</section>
+
+
+
+				<section>
+					<h2>Objects</h2>
+					<p>Un objet est une collection de valeurs de tout type (y compris des fonctions)</p>
+
+					<pre><code class="javascript">
+	var objectName = {
+	    propertyName: propertyValue,
+	    propertyName: propertyValue,
+	    ...
+	};
+					</code></pre>
+
+					<div class="fragment">
+					<pre><code class="javascript">
+	var drug = {
+	    color: "blue",
+	    name: "crystal meth",
+	    purity: 96,
+	    cook: function(){ ... }
+	}
+					</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Lire un object</h2>
+					<p>On accède aux valeurs d'un objet via le nom de la propriété:</p>
+					<pre><code class="javascript">
+	var drug = {
+	    color: "blue",
+	    name: "crystal meth",
+	    purity: 96
+	}
+					</code></pre>
+
+					<div class="fragment">
+					<p>Avec un point:</p>
+					<pre><code class="javascript">
+	var name = drug.name;
+					</code></pre>
+					</div>
+
+					<div class="fragment">
+					<p>Ou avec la notation crochets:</p>
+					<pre><code class="javascript">
+	var name = drug['name'];
+					</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Ecrire dans un objet</h2>
+					<p>On y écrit de la même manière:</p>
+					<pre><code class="javascript">
+	drug.price = 99.9;
+					</code></pre>
+
+					<div class="fragment">
+					<p>Ou avec la notation crochet:</p>
+					<pre><code class="javascript">
+	drug['price'] = 99.9;
+					</code></pre>
+					</div>
+
+					<div class="fragment">
+					<p>Et l'on peut effacer des propriétés:</p>
+					<pre><code class="javascript">
+	delete drug.price;
+					</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>array of objects</h2>
+					<p>Un <code>array</code> peut aussi contenir des <code>objects</code>:</p>
+					<pre><code class="javascript">
+	var persons = [
+	    {
+	        name: "Walter White",
+	        occupation: "Chemistry teacher"
+	    },
+	    {
+	        name: "Jesse Pinkman",
+	        occupation: "Drug dealer"
+	    }
+	];
+
+	for(var i=0; i&lt;persons.length;i++){
+	    console.log(persons[i].name+" is a "+persons[i].occupation);
+	}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Objects &amp; functions</h2>
+					<p>On peut passer un objet à une fonction:</p>
+					<pre><code class="javascript">
+	var theDanger = {
+	    name: "Walter White",
+	    occupation: "Chemistry teacher"
+	};
+
+	function describePerson(person){
+	    console.log(person.name+" is a "+person.occupation);
+	}
+					</code></pre>
+
+					<pre class="fragment"><code class="javascript">
+	describePerson(theDanger);
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Let's develop it!</h2>
+					<p>Copiez/collez la variable <code>persons</code> qui se trouve dans ../materials/objects-in-array.js</p>
+					<p>Le but est d'afficher la descriptions de chaque personne sous cette forme:<br>
+					{name} is {job}. He/She likes to {hobbies list}.</p>
+					<br>
+					<p>Bonus: utilisez plusieurs fonctions</p>
+					<p>Bonus++: He/She dynamique</p>
+					<p>Bonus+++: gestion de job undefined ({name} has no job) et de job2</p>
+				</section>
+
+
+				<section>
+					<pre class="live-editor">
+function getEnumerationString(arr){
+	var str = '';
+	for(var i=0; i&lt;arr.length; i++){
+		str += arr[i];
+		if(i===arr.length-2){
+			str+=' and ';
+		}else if(i!==arr.length-1){
+			str+=', ';
+		}
+	}
+	return str;
+}
+
+function describePerson(person){
+	var str = person.name+' ';
+	if(person.job){
+		str += 'is '+person.job;
+		if(person.job2){
+			str += ' and '+person.job2;
+		}
+	}else{
+		str += 'has no job';
+	}
+	str += '. ';
+
+	str += (person.gender==='male' ? 'He ' : 'She ');
+
+	str += 'likes to '+getEnumerationString(person.hobbies)+'.';
+
+	return str;
+}
+
+for(var i=0;i&lt;persons.length;i++){
+	console.log(describePerson(persons[i]));
+}
+
+</pre>
+				</section>
+
+
+				<section>
+					<h2>DOM</h2>
+					<p>Toute page html est composées de "nodes" (noeuds) DOM.</p>
+					<p class="fragment">Chaque "node" est représenté en javascript par un objet et sont connectées entre elles.</p>
+					<p class="fragment">Parent (<code>parentNode</code>), enfants (<code>childNodes</code>), <br>frères et soeurs (<code>prevSibling</code>, <code>nextSibling</code>)</p>
+					<pre class="fragment"><code contenteditable class = "javascript">
+  var bodyNode = document.body; // &lt;body>
+  var htmlNode = document.body.parentNode; // &lt;html>
+  for (var i = 0; i < document.body.childNodes.length; i++) {
+    var childNode = document.body.childNodes[i];
+    //pourrait être &lt;p>, &lt;h1>, etc.
+  }
+          </code></pre>
+				</section>
+
+				<section>
+					<h2>Accéder au DOM</h2>
+					<p>Plusieurs méthodes sont disponibles pour trouver un élément HTML (node):</p>
+					<pre><code contenteditable class = "javascript">
+	// via l'id de l'élément:
+	var logoElement = document.getElementById('logo');
+
+	// via son tag:
+	var titles = document.getElementsByTagName('h2');
+
+	// via sa classe:
+	var thumbnails = document.getElementsByClassName('thumb');
+          </code></pre>
+
+
+				</section>
+
+				<section>
+					<h2>Modifier le DOM</h2>
+					<p>On peut modifier et ajouter des attributs aux éléments HTML (node):</p>
+					<pre><code contenteditable class = "javascript">
+	var logo = document.getElementById('logo');
+
+	var src = logo.getAttribute('src');
+
+	logo.setAttribute('src', 'imgs/another-logo.jpg');
+
+          </code></pre>
+
+					<div class="fragment">
+					<p>Et modifier le contenu des éléments:</p>
+          			<pre><code contenteditable class = "javascript">
+	var titles = document.getElementsByTagName('h2');
+
+	titles[0].innerHTML = "I'm the &lt;b>FIRST&lt;/b> title !";
+          </code></pre>
+          			</div>
+				</section>
+
+
+				<section>
+					<h2>Créer des nouvelles nodes</h2>
+					<pre><code class="javascript">
+	var newNode = document.createElement(tagName);
+
+	document.appendChild(newNode);
+					</code></pre>
+					<br>
+
+					<pre class="fragment"><code class="javascript">
+	var myImage = document.createElement('img');
+	myImage.setAttribute('src', 'imgs/logo.png');
+	document.body.appendChild(myImage);
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Let's develop it</h2>
+					<p>Toujours à partir de la variable <code>persons</code>:</p>
+					<p>Le but est d'afficher un bloc HTML pour chaque personne comme ceci:</p>
+					<div style="width:50%;border:1px solid yellow;padding:10px;overflow:hidden;margin:0 auto">
+						<img src="../materials/imgs/walter-white.png" style="float:left;width:35%">
+						<div style="float:right;width:60%">
+							<b>Walter White</b><br><br>
+							<div style="text-align:left">Hobbies:</div>
+							<ul>
+								<li>cook meth</li>
+								<li>make bomb</li>
+							</ul>
+						</div>
+					</div>
+					<p>Bonus: filtrez uniquement les personnes qui ont plusieurs hobby</p>
+				</section>
+
+
+			</div>
+
+		</div>
+
+
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../../libs/reveal/lib/js/head.min.js"></script>
+		<script src="../../libs/reveal/js/reveal.min.js"></script>
+		<script src="http://localhost:1337/socket.io/socket.io.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../../libs/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../libs/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					//live-editor requires ace to be loaded first
+					{ src: '../../libs/reveal/plugin/live-editor/ace/src-noconflict/ace.js' },
+					{ src: '../../libs/reveal/plugin/live-editor/live-editor.js' }
+				]
+			});
+
+
+
+		</script>
+
+	</body>
+</html>

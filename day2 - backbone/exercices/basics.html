@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Backbone Basics</title>
+</head>
+<body>
+
+	<ul class="persons"></ul>
+
+
+	<script src="myTpl.html" type="text/tpl"></script>
+	<script id="personTpl" type="text/tpl">
+		<strong><%=name%></strong><br>
+
+
+		<ul>
+		<% for(var i=0;i<hobbies.length;i++){ %>
+			<li><%=hobbies[i]%></li>
+		<% } %>
+		</ul>
+	</script>
+
+
+	<script src="bower_components/jquery/jquery.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/backbone/backbone.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Javascript basics</title>
+
+		<!--
+			Variables
+			Data types: primitives
+			truthy / falsy
+			if/else
+			functions
+			variable scope
+		-->
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../../libs/reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../../libs/reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../../libs/reveal/lib/css/zenburn.css">
+
+		<!-- For live-editor -->
+		<link rel="stylesheet" href="../../libs/reveal/plugin/live-editor/style.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../../libs/reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<style>
+			.reveal section h2{color:#FDE404;}
+			.columns{overflow: hidden;width:100%;}
+			.columns .column-50{
+				width:50%;
+				float:left;
+			}
+		</style>
+
+		<script>
+			var allTests = {};
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Javascript basics</h1>
+					<h2>Part 1: Hello javascript!</h2>
+				</section>
+
+				<section>
+					<h2>Les variables</h2><br>
+
+					<div class="fragment">
+					<p>Déclarer une variable (lui donner un nom)</p>
+					<pre><code class="javascript">
+	var bananas;
+					</code></pre></div><br>
+
+					<div class="fragment">
+					<p>Initialiser une variable (lui donner une valeur)</p>
+					<pre><code class="javascript">
+	bananas = 5;
+					</code></pre></div>
+
+
+				</section>
+
+
+				<section>
+					<h2>Les variables</h2><br>
+
+					<p>Déclarer et initiliser en même temps:</p>
+					<pre><code class="javascript">
+	var bananas = 5;
+					</code></pre><br>
+
+
+					<div class="fragment">
+					<p>Changer la valeur d'une variable:</p>
+					<pre><code class="javascript">
+	var bananas = 4;
+					</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Les data types</h2><br>
+
+
+					<div class="fragment">
+					<p><b>string</b> (une chaine de caractères):</p>
+					<pre><code class="javascript">
+	var name = 'Walter White';
+	var functionName = "Teacher / Meth cook";
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p><b>number</b> (un nombre, entier ou pas):</p>
+					<pre><code class="javascript">
+	var year = 2013;
+	var pi = 3.14;
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p><b>boolean</b> (vrai ou faux):</p>
+					<pre><code class="javascript">
+	var skyIsBlue = true;
+	var grassIsPink = false;
+					</code></pre>
+					</div>
+
+
+
+				</section>
+
+				<section>
+					<h2>Les data types</h2>
+
+
+					<div class="fragment">
+					<p><b>undefined</b> (pas encore de valeur):</p>
+					<pre><code class="javascript">
+	var meaningOfLife;
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p><b>null</b> (une valeur vide):</p>
+					<pre><code class="javascript">
+	var favoriteTiger = null;
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p>Javascript est "loosely typed", le type d'une variable peut changer:</p>
+					<pre><code class="javascript">
+	var fabulousValue = 123;
+	fabulousValue = 'unicorn';
+					</code></pre>
+					</div>
+
+				</section>
+
+
+				<section>
+					<h2>Truthy / falsy</h2>
+
+					<p>En javascript on peut utiliser n'importe quel type de valeur (string, number, ...) comme si c'était un Boolean.</p>
+					<pre class="live-editor">
+if(true){
+	console.log('true is true');
+}
+
+if("not a boolean"){
+	console.log('string is truthy');
+}else{
+	console.log('string is falsy');
+}
+
+</pre>
+				</section>
+
+				<section>
+					<h2>Naming rules</h2><br>
+					<div class="fragment">
+					<p>Commence par une lettre, $ ou _</p>
+					<p>Contient des lettres, chiffres, $ et _</p>
+					<pre><code class="javascript">
+	var hello;
+	var _hello;
+	var $hello;
+	var hello2;
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p>Les nom des variables sont sensibles à la casse:</p>
+					<pre><code class="javascript">
+	var hello;
+	var Hello;
+	var heLLO;
+					</code></pre>
+					</div>
+
+
+				</section>
+
+
+
+
+				<section>
+					<h2>Expressions</h2>
+					<p>Opérations sur les nombres:</p>
+					<pre><code class="javascript">
+		var bananas = 5;
+		var oranges = 4;
+		var fruits = bananas + oranges;
+					</code></pre>
+
+<table><tbody><tr><th>Symboles</th><th> </th></tr>
+<tr><td>+</td><td>Addition</td></tr>
+<tr><td>-</td><td>Soustraction</td></tr>
+<tr><td>*</td><td>Multiplication</td></tr>
+<tr><td>/</td><td>Division</td></tr>
+<tr><td>%</td><td>Modulus</td></tr>
+<tr><td>++</td><td>Incremente</td></tr>
+<tr><td>--</td><td>Décremente</td></tr>
+</tbody></table>
+				</section>
+
+
+				<section>
+					<h2>Expressions</h2>
+					<p>Opéarations sur les strings:</p>
+<pre class="live-editor">
+var firstName = 'Walter';
+var lastName = 'White';
+var fullName = firstName + ' ' + lastName;
+
+console.log( 'Hello ' + fullName + '.' );
+
+</pre>
+				</section>
+
+
+
+				<section>
+					<h2>Let's develop it!</h2>
+					<p>My first javascript!</p>
+					<br>
+					<p><b>Calculateur de stock de bananes</b></p>
+					<p>Combien de bananes ais-je besoin pour pouvoir en manger <br>tous les jour jusqu'à la fin de mes jours ?</p>
+					<br>
+
+
+					<ul>
+						<li class="fragment">Stocker mon âge dans une variable</li>
+						<li class="fragment">Stocker mon âge maximum dans une variable</li>
+						<li class="fragment">Stocker la quantité de bananes mangées par jours dans une variable</li>
+						<li class="fragment">Calculer la quantité nécessaire pour tenir jusqu'à l'âge maximum</li>
+						<li class="fragment">Afficher le texte: "Vous aurez besoin de NN bananes pour tenir jusq'à l'âge vénérable de NN ans."</li>
+					</ul>
+
+				</section>
+
+				<section>
+<pre class="live-editor">
+
+var myAge = 26;
+var myMaxAge = 85;
+var amountOfBananaPerDay = 6;
+
+var remainingYears = myMaxAge - myAge;
+var remainingDays = remainingYears * 365;
+var amountNeeded = amountOfBananaPerDay * remainingDays;
+
+console.log("Vous aurez besoin de "+amountNeeded+" bananes pour tenir jusq'à l'âge de "+myMaxAge+" ans.");
+
+</pre>
+				</section>
+
+
+
+
+
+				<section>
+					<h2>Les conditions</h2><br>
+					<div class="fragment">
+					<p>Javascript peut exécuter du code ou non en fonction des conditions:</p>
+					<pre><code class="javascript">
+	if( condition ){
+	    // code à exécuter
+	}
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<pre><code class="javascript">
+	var bananas = 2;
+	if(bananas < 3){
+	    console.log("Buy more bananas!");
+	}
+					</code></pre>
+					</div>
+
+
+				</section>
+
+
+
+				<section>
+					<h2>Les comparateurs</h2><br>
+<table>
+<tbody><tr class="fragment visible"><td> === </td><td> Egalité </td></tr>
+<tr class="fragment visible"><td> !== </td><td> Inégalité </td></tr>
+<tr class="fragment visible"><td> &gt; </td><td> Plus grand </td></tr>
+<tr class="fragment visible"><td> &gt;= </td><td> Plus grand ou égal </td></tr>
+<tr class="fragment visible"><td> &lt; </td><td> Plus petit </td></tr>
+<tr class="fragment visible"><td> &lt;= </td><td> Plus petit ou égal </td></tr>
+</tbody></table>
+				</section>
+
+
+				<section>
+					<h2>Opérateurs logiques</h2>
+          <table>
+            <tr class = "fragment"><td> && </td><td> AND </td></tr>
+            <tr class = "fragment"><td> || </td><td> OR </td></tr>
+            <tr class = "fragment"><td> ! </td><td> NOT </td></tr>
+          </table>
+          <div class = "fragment">
+            <pre><code contenteditable class ="javascript">
+        var bananas = 5;
+        var oranges = 2;
+        if (bananas > 3 && oranges > 3){
+            console.log('Eat fruit!');
+        }
+        if (bananas < 2 || oranges < 2){
+            console.log('Buy fruit!');
+        }
+        if !(bananas >== 0){
+            console.log('How do you have negative bananas?');
+        }
+            </code></pre>
+          </div>
+				</section>
+
+				<section>
+					<h2>if/else</h2><br>
+
+					<div class="fragment">
+					<p>On peut utiliser <code>else</code> pour spécifier une alternative:</p>
+					<pre><code class="javascript">
+	var bananas = 2;
+	if(bananas < 3){
+	    console.log("Buy more bananas!");
+	}else{
+	    console.log("You have enough bananas.");
+	}
+					</code></pre>
+					</div>
+				</section>
+
+
+				<section>
+					<h2>if/else</h2><br>
+
+					<div class="fragment">
+					<p>On peut utiliser <code>else if</code> pour spécifier plusieurs alternatives:</p>
+					<pre><code class="javascript">
+
+	if(bananas > 10){
+	    console.log("You have too many bananas.");
+	}else if(bananas < 3){
+	    console.log("Buy more bananas!")
+	}else if(bananas === 1){
+	    console.log("It is the last banana.");
+	}else if(bananas === 0){
+	    console.log("No bananas :(");
+	}else{
+	    console.log("Nagative bananas again... How do you do that ?");
+	}
+					</code></pre>
+					</div>
+				</section>
+
+
+				<section>
+					<h2>Let's develop it!</h2><br>
+					<p>Modifiez votre <i>calculateur de stock de bananes</i> pour afficher <br>"Ah ouais, ça fait beaucoup!" si il faut plus de 40000 bananes <br>et "Oh, ça fait pas tant que ça." dans le cas inverse.</p>
+				</section>
+
+
+				<section>
+					<h2>Fonctions</h2><br>
+					<p>Une fonction n'est qu'une liste d'instructions.</p><br>
+
+					<div class="fragment">
+					<p>Déclarer une fonction:</p>
+					<pre><code class="javascript">
+	function sayHello(){
+	    console.log("Hello!");
+	}
+					</code></pre><br>
+					</div>
+
+					<div class="fragment">
+					<p>Appeler une fonction:</p>
+					<pre><code class="javascript">
+	sayHello();
+					</code></pre>
+					<p>(on dit aussi "exécuter" ou "invoquer" une fonction)</p>
+					</div>
+
+				</section>
+
+
+				<section>
+					<h2>Arguments</h2>
+					<p>Une fonction peut accepter des arguments.</p><br>
+
+
+					<pre class="live-editor">
+function sayHello(name){
+    console.log("Hello " + name + " !");
+}
+
+sayHello("Walter White");
+sayHello("Jess Pinkman");
+
+var aName = "Skyler White";
+sayHello(aName);
+</pre>
+
+
+				</section>
+
+
+				<section>
+					<h2>Arguments</h2>
+					<p>Une fonction peut accepter PLUSIEURS arguments.</p><br>
+
+
+					<pre class="live-editor">
+function multiplyNumbers(num1, num2){
+    var result = num1 * num2;
+    console.log(result);
+}
+
+multiplyNumbers(2, 10);
+
+var number1 = 3;
+var number2 = 2;
+
+multiplyNumbers(number1, number2);
+</pre>
+
+
+				</section>
+
+				<section>
+					<h2>Return value</h2>
+					<p>Une fonction peut returner une valeur.</p><br>
+
+
+					<pre class="live-editor">
+function multiplyNumbers(num1, num2){
+    var result = num1 * num2;
+    return result; // return est la dernière ligne executée par une fonction
+}
+
+var number1 = 2;
+var number2 = 3;
+var total = multiplyNumbers(number1, number2);
+
+console.log(number1+" * "+number2+" = "+total);
+</pre>
+
+
+				</section>
+
+				<section>
+					<h2>Variable scope</h2>
+					<p>Une variable n'est visible que dans la fonction dans laquelle elle est définie: variable <b>locale</b></p><br>
+
+
+					<pre class="live-editor">
+function multiplyNumbers(num1, num2){
+	// la variable result est "locale"
+    var result = num1 * num2;
+    return result;
+}
+
+var number1 = 2;
+var number2 = 3;
+var total = multiplyNumbers(number1, number2);
+
+console.log("result:" + result);
+</pre>
+
+
+				</section>
+				<section>
+					<h2>Variable scope</h2>
+					<p>Une variable n'est visible que dans la fonction dans laquelle elle est définie: variable <b>globale</b></p><br>
+
+
+					<pre class="live-editor">
+// la variable result est "globale"
+var result;
+function multiplyNumbers(num1, num2){
+	// on change la valeur de la variable globale
+	// plutot que de déclarer une variable locale
+    result = num1 * num2;
+    return result;
+}
+
+var number1 = 2;
+var number2 = 3;
+var total = multiplyNumbers(number1, number2);
+
+console.log("result:" + result);
+</pre>
+
+
+				</section>
+
+				<section>
+					<h2>Let's develop it!</h2><br>
+
+					<p>Placez le code de votre <i>calculateur de stock de bananes</i> dans une fonction afin de pouvoir l'appeler de cette façon:</p>
+
+
+					<pre><code class="javascript">
+	calculate(myAge, maxAge, perDay);
+					</code></pre>
+
+					<p>La fonction doit retourner le nombre total de bananes sans l'afficher.</p>
+					<p>Le code pour afficher le message doit se trouver hors de la fonction.</p>
+				</section>
+
+
+
+
+
+
+			</div>
+
+		</div>
+
+
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../../libs/reveal/lib/js/head.min.js"></script>
+		<script src="../../libs/reveal/js/reveal.min.js"></script>
+		<script src="http://localhost:1337/socket.io/socket.io.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../../libs/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../libs/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					//live-editor requires ace to be loaded first
+					{ src: '../../libs/reveal/plugin/live-editor/ace/src-noconflict/ace.js' },
+					{ src: '../../libs/reveal/plugin/live-editor/live-editor.js' }
+				]
+			});
+
+
+
+
+
+		</script>
+
+	</body>
+</html>

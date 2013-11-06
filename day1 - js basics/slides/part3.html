@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Javascript basics</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../../libs/reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../../libs/reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../../libs/reveal/lib/css/zenburn.css">
+
+		<!-- For live-editor -->
+		<link rel="stylesheet" href="../../libs/reveal/plugin/live-editor/style.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../../libs/reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<style>
+			.reveal section h2{color:#FDE404;}
+			.columns{overflow: hidden;width:100%;}
+			.columns .column-50{
+				width:50%;
+				float:left;
+			}
+		</style>
+
+		<script>
+			var allTests = {};
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Javascript basics</h1>
+					<h2>Part 3: Object oriented programming</h2>
+				</section>
+
+
+
+				<section>
+
+					<h2>Functions &amp; methods</h2>
+
+					<p>Une fonction est un objet qui possède des propriétés tels que <code>name</code> ou <code>length</code>.</p>
+					<p>On peut lui ajouter des propriétés ou la stocker dans une variable</p>
+
+<pre class="live-editor">
+function myFunction(a, b){ return 42; }
+myFunction.foo = "bar";
+var baz = myFunction;
+</pre>
+				</section>
+
+
+
+				<section>
+					<p>Quand on met une fonction dans un objet on l'apelle une méthode.</p><br>
+
+<pre class="live-editor">
+var myObject = {
+   get: function(){ return this.val; },
+   val: "foo"
+};
+myObject.get(); // "foo"
+</pre>
+				</section>
+
+
+				<section>
+					<p>Le <code>this</code> référence alors l'objet sur lequel il est exécuté</p><br>
+<pre class="live-editor">
+function myMethod(){
+   return this.val;
+}
+
+var object1 = {
+   get: myMethod,
+   val: 42
+};
+var object2 = {
+   get: myMethod,
+   val: 3.1416
+};
+
+console.log(object1.get());
+console.log(object2.get());
+
+</pre>
+				</section>
+
+				<section>
+					<h2>Prototypal inheritance</h2><br>
+<pre class="live-editor">
+var parent = {
+   get: function myFunction(){
+      return this.val;
+   },
+   val: 42
+};
+
+var child = Object.create(parent);
+child.val = 3.1416;
+
+var grandChild = Object.create(child);
+
+parent.get(); // 42
+child.get(); // 3.1416
+grandChild.get(); // 3.1416
+</pre>
+				</section>
+
+
+				<section>
+					<h2>Polymorphisme &amp; Method overriding</h2><br>
+<pre class="live-editor">
+var parent = {
+   get: function myFunction(){
+      return this.val;
+   },
+   val: 42
+};
+
+var child = Object.create(parent);
+child.get = function(){
+   return this.val + ", BITCH";
+};
+
+parent.get(); // 42
+child.get(); // "42, BITCH"
+</pre>
+				</section>
+				<section>
+					<h2>Polymorphisme &amp; Method overriding</h2><br>
+<pre class="live-editor">
+var parent = {
+   get: function myFunction(){
+      return this.val;
+   },
+   val: 42
+};
+
+var child = Object.create(parent);
+child.get = function(){
+   return parent.get.call(this) + ", BITCH";
+};
+
+parent.get(); // 42
+child.get(); // "42, BITCH"
+</pre>
+				</section>
+
+				<section>
+					<h2>Classes et instances</h2>
+<pre class="live-editor">
+
+// classe (constructeur)
+function Parent(val){
+	this.val = val;
+}
+
+// protoype de la classe
+Parent.prototype.get = function(){
+	return this.val;
+}
+
+// instanciation de la classe
+var parent = new Parent(42);
+
+console.log(parent.get());
+
+</pre>
+				</section>
+
+
+				<section>
+					<h2>Sous classes</h2>
+					<pre class="live-editor">
+
+// classe (constructeur)
+function Parent(val){
+	this.val = val;
+}
+
+// protoype de la classe
+Parent.prototype.get = function(){
+	return this.val;
+}
+
+// sous classe
+function Child(val){
+	Parent.call(this, val);
+}
+
+// extension de Parent par la classe Child
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+// instanciation
+var parent = new Parent(42);
+var child = new Child(3.14);
+console.log(parent.get());
+console.log(child.get());
+
+</pre>
+				</section>
+
+
+				<section>
+					<h2>Pour continuer</h2>
+
+					<ul>
+						<li><a href="http://bonsaiden.github.io/JavaScript-Garden/">http://bonsaiden.github.io/JavaScript-Garden/</a></li>
+						<li><a href="http://ejohn.org/apps/learn/">http://ejohn.org/apps/learn/</a></li>
+						<li>Le livre <i>Javascript: the good parts</i> par Douglas Crockford</li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../../libs/reveal/lib/js/head.min.js"></script>
+		<script src="../../libs/reveal/js/reveal.min.js"></script>
+		<script src="http://localhost:1337/socket.io/socket.io.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../../libs/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../libs/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../libs/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../../libs/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					//live-editor requires ace to be loaded first
+					{ src: '../../libs/reveal/plugin/live-editor/ace/src-noconflict/ace.js' },
+					{ src: '../../libs/reveal/plugin/live-editor/live-editor.js' }
+				]
+			});
+
+
+
+
+
+		</script>
+
+	</body>
+</html>
